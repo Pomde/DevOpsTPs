@@ -6,7 +6,6 @@ on:
     - CI devops 2023 - Test backend
     branches: 
     - main
-    - develop
     types: 
     - completed
 
