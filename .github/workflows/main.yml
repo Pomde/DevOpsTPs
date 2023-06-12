@@ -24,6 +24,7 @@ jobs:
      #finally build your app with the latest command
       - name: Build and test with Maven
         run: mvn --file ./simple-api/pom.xml clean verify
+        
   # define job to build and publish docker image
   build-and-push-docker-image:
     needs: test-backend
