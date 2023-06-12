@@ -27,6 +27,8 @@ jobs:
 
   # define job to build and publish docker image
   build-and-push-docker-image:
+    # build and push only on main branch
+    if: github.ref == 'refs/heads/main'
     needs: test-backend
     # run only when code is compiling and tests are passing
     runs-on: ubuntu-22.04
@@ -46,8 +48,6 @@ jobs:
           context: ./simple-api
           # Note: tags has to be all lower-case
           tags:  ${{ secrets.DOCKERHUB_USERNAME }}/simple-api
-          # build on feature branches, push only on main branch
-          push: ${{ github.ref == 'refs/heads/main' }}
 
       - name: Build image and push database
         uses: docker/build-push-action@v3
@@ -56,8 +56,6 @@ jobs:
           context: ./database
           # Note: tags has to be all lower-case
           tags:  ${{ secrets.DOCKERHUB_USERNAME }}/database
-          # build on feature branches, push only on main branch
-          push: ${{ github.ref == 'refs/heads/main' }}
 
       - name: Build image and push httpd
         uses: docker/build-push-action@v3
@@ -66,5 +64,3 @@ jobs:
           context: ./httpd
           # Note: tags has to be all lower-case
           tags:  ${{ secrets.DOCKERHUB_USERNAME }}/httpd
-          # build on feature branches, push only on main branch
-          push: ${{ github.ref == 'refs/heads/main' }}
