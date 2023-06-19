@@ -1,8 +1,12 @@
 all:
  vars:
+  # name of the user used to connect to the remote host
    ansible_user: centos
+  # path to the private key used to connect to the remote host
    ansible_ssh_private_key_file: ~/Documents/Cours/M2/DevOpsTPs/.ssh/id_rsa
+  # name of the docker network
    docker_network_name: my-network
  children:
    prod:
+    # IP address of the remote host
      hosts: lcambillau.takima.cloud

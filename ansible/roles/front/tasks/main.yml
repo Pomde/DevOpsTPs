@@ -1,9 +1,11 @@
 - name: Remove front
+  # Remove the front container if it exists
   docker_container:
     name: front
     state: absent
 
 - name: Run front
+  # Run the front container connected to the network specified in the variable docker_network_name in setup.yml
   docker_container:
     name: front
     image: pomde/front

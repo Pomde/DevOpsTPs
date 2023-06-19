@@ -1,15 +1,18 @@
 - hosts: all
   gather_facts: false
+  # use the root user on task execution
   become: yes
 
+  # define the roles to be executed, they will be executed in the order they are defined
   roles:
     - role: docker
       vars:
+          # use python2 for the docker role as yum is not compatible in python3
           ansible_python_interpreter: /usr/bin/python
     - role: network
       vars:
+        # use python3 for the network role and all other docker container related roles as python3 is required for the docker SDK
         ansible_python_interpreter: /usr/bin/python3
     - role: database
     - role: app
     - role: proxy
-    - role: front

@@ -1,17 +1,22 @@
 # tasks file for roles/database
 - name: Remove database
+  # Remove the database container if it exists
   docker_container:
     name: database
     state: absent
 
 - name: Run database
+  # Run the database container 
   docker_container:
     name: database
     image: pomde/database
+    # Connect the database container to the network specified in the variable docker_network_name in setup.yml
     networks:
       - name: "{{ docker_network_name }}"
+    # Mount a volume to persist the database data
     volumes:
       - data_db:/var/lib/postgresql/data
+    # Define necessary environment variables to connect to the database
     env:
       ENV POSTGRES_DB: tp_db
       POSTGRES_USER: exampleuser

@@ -1,3 +1,4 @@
 - name: Create network
+  # Create a docker network with the name specified in the variable docker_network_name in setup.yml
   docker_network:
     name: "{{ docker_network_name }}"

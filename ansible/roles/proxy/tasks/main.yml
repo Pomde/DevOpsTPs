@@ -1,14 +1,18 @@
 # tasks file for roles/proxy
 - name: Remove HTTPD
+  # Remove the HTTPD container if it exists
   docker_container:
     name: httpd
     state: absent
 
 - name: Run HTTPD
+  # Run the HTTPD container
   docker_container:
     name: httpd
     image: pomde/httpd
+    # Connect the HTTPD container to the network specified in the variable docker_network_name in setup.yml
     networks:
       - name: "{{ docker_network_name }}"
+    # Map the port 80 of the container to the port 80 of the host
     published_ports:
       - 80:80
