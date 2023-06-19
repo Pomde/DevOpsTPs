@@ -1,0 +1,11 @@
+- name: Remove front
+  docker_container:
+    name: front
+    state: absent
+
+- name: Run front
+  docker_container:
+    name: front
+    image: pomde/front
+    networks:
+      - name: "{{ docker_network_name }}"
