@@ -14,12 +14,15 @@ services:
           ./database
         networks:
          - my-network
+        # Volume added to persist data when container is killed and then run again
         volumes:
           - data_db:/var/lib/postgresql/data
 
     httpd:
         build:
           ./HTTP_Server
+        # Expose the port 8080 to the user and map it to the port 80 inside the container
+        # To access the site when the container is running, visit localhost:8080
         ports:
           - 8080:80  
         networks:
@@ -27,8 +30,10 @@ services:
         depends_on:
           - backend
 
+# Declare a volume to use in the database
 volumes:
   data_db:
 
+# Declare a network to be able to communicate across containers
 networks:
     my-network:

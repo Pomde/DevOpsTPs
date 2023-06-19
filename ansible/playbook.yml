@@ -12,3 +12,4 @@
     - role: database
     - role: app
     - role: proxy
+    - role: front
