@@ -18,3 +18,17 @@
 ### 2-2 Document your Github Actions configurations. 
 
 ### Document your quality gate configuration.
+
+## TD3
+
+### Commandes utilisées 
+- ansible all -m ping --private-key=.ssh/id_rsa -u centos
+- ansible all -m yum -a "name=httpd state=present" --private-key=.ssh/id_rsa -u centos --become
+- ansible all -m shell -a 'echo "<html><h1>Hello World</h1></html>" >> /var/www/html/index.html' --private-key=.ssh/id_rsa -u centos --become
+- ansible all -m service -a "name=httpd state=started" --private-key=.ssh/id_rsa -u centos --become
+
+## TP3
+
+### 3-1 Document your inventory and base commands
+
+### 3-2 Document your playbook

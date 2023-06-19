@@ -1,0 +1,14 @@
+# tasks file for roles/proxy
+- name: Remove HTTPD
+  docker_container:
+    name: httpd
+    state: absent
+
+- name: Run HTTPD
+  docker_container:
+    name: httpd
+    image: pomde/httpd
+    networks:
+      - name: "{{ docker_network_name }}"
+    published_ports:
+      - 80:80

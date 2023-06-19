@@ -1,0 +1,20 @@
+- hosts: all
+  gather_facts: false
+  become: yes
+
+  roles:
+    - role: docker
+      vars:
+          ansible_python_interpreter: /usr/bin/python
+    - role: network
+      vars:
+        ansible_python_interpreter: /usr/bin/python3
+    - role: database
+      vars:
+        ansible_python_interpreter: /usr/bin/python3
+    - role: app
+      vars:
+        ansible_python_interpreter: /usr/bin/python3
+    - role: proxy
+      vars:
+        ansible_python_interpreter: /usr/bin/python3

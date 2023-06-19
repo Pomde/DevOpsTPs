@@ -1,0 +1,12 @@
+# tasks file for roles/app
+- name: Remove backend
+  docker_container:
+    name: backend
+    state: absent
+
+- name: Run backend
+  docker_container:
+    name: backend
+    image: pomde/simple-api
+    networks:
+      - name: "{{ docker_network_name }}"

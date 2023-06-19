@@ -1,0 +1,18 @@
+# tasks file for roles/database
+- name: Remove database
+  docker_container:
+    name: database
+    state: absent
+
+- name: Run database
+  docker_container:
+    name: database
+    image: pomde/database
+    networks:
+      - name: "{{ docker_network_name }}"
+    volumes:
+      - data_db:/var/lib/postgresql/data
+    env:
+      ENV POSTGRES_DB: tp_db
+      POSTGRES_USER: exampleuser
+      POSTGRES_PASSWORD: examplepassword
